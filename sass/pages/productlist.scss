@@ -1,0 +1,191 @@
+/*
+ * @Author: Esther 
+ * @Date: 2017-11-06 22:45:53 
+ */
+
+
+/******************************************************************/
+
+$main-color:#ff841d;
+$main-color-price:#ff6c00;
+$main-font-color:#5a5a5a;
+$main-font-color-grew: #a1a1a1;
+$main-color-line:#e6e6e6;
+$base-font-size: 16px !default;
+$base-font-size: 16px !default;
+$productlist-color-price:#ed0000;
+@function px2em($px) {
+    $base: 1 / 37.5 * 1rem;
+    @if (unitless($px)) {
+        @warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels for you";
+        @return px2em($px + 0px);
+    }
+    @else if (unit($px)==rem) {
+        @return $px;
+    }
+    @return $px / 1px * $base;
+}
+
+@mixin font-dpr($font-size) {
+    font-size: $font-size * 1px;
+    [data-dpr="2"] & {
+        font-size: $font-size * 2px;
+    }
+    // for mx3
+    [data-dpr='2.5'] & {
+        font-size: round($number: $font-size * 2.5 / 2) * 1px;
+    }
+    // for 小米note
+    [data-dpr="2.75"] & {
+        font-size: round($number: $font-size * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        font-size: round($number: $font-size * 3 / 2) * 3px;
+    }
+    [data-dpr="4"] & {
+        font-size: $font-size * 2px;
+    }
+}
+
+
+/******************************************************************/
+
+.productList {
+    /***************** 三级导航菜单 *******************/
+    .productListNav {
+        overflow: hidden;
+        height: px2em(40);
+        width: 100%;
+        background-color: #5a5a5a;
+        border: 1px solid #ddd;
+        ul {
+            width: 70%;
+            height: px2em(40);
+            overflow: hidden;
+            padding: 0 px2em(10);
+            float: left;
+            li {
+                max-width: 40%;
+                float: left;
+                a {
+                    overflow: hidden;
+                    display: inline-block;
+                    height: px2em(40);
+                    line-height: px2em(40);
+                    padding: 0 px2em(2);
+                    color: #fff;
+                    @include font-dpr(16);
+                }
+            }
+        }
+        .btn-filter {
+            height: px2em(40);
+            width: 20%;
+            padding: px2em(5) px2em(10);
+            float: right;
+            a {
+                width: 100%;
+                height: 100%;
+                // background-color: #fff;
+                background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+                border-radius: px2em(5);
+                display: inline-block;
+                line-height: px2em(30);
+                text-align: center;
+                @include font-dpr(14);
+            }
+        }
+    }
+    /****************** 商品列表 *********************/
+    .productListContent {
+        background-color: #fff;
+        ul {
+            li {
+                a {
+                    display: block;
+                    padding: px2em(10) px2em(5);
+                    height: 100%;
+                    width: 100%;
+                    .left {
+                        img {
+                            width: px2em(120);
+                            height: px2em(120);
+                        }
+                    }
+                    .right {
+                        overflow: hidden;
+                        // margin-left: px2em(5);
+                        padding-left: px2em(5);
+                        min-height: px2em(120);
+                        position: relative;
+                        height: 100%;
+                        .tit {
+                            line-height: px2em(26);
+                            height: px2em(56);
+                            color: #333;
+                            overflow: hidden;
+                            @include font-dpr(16);
+                        }
+                        .price {
+                            color: $productlist-color-price;
+                            @include font-dpr(16);
+                        }
+                        .other {
+                            position: absolute;
+                            color: $main-font-color-grew;
+                            bottom: px2em(25);
+                            width: 100%;
+                            .mall {
+                                position: absolute;
+                            }
+                            .comment {
+                                position: absolute;
+                                right: px2em(5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/******************** 分页 **************************/
+
+.mainPaging {
+    background-color: #fff;
+    height: px2em(40);
+    width: 100%;
+    padding: px2em(5) px2em(15);
+    a {
+        height: 100%;
+        width: 100%;
+        display: block;
+        border-radius: px2em(5);
+        border: 1px solid $main-color-line;
+        background-color: #d4d4d4;
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#f1f1f1), to(#d4d4d4));
+        box-shadow: 0 0 1px #666;
+        text-align: center;
+        line-height: px2em(30);
+        font-weight: bold;
+    }
+    div {
+        height: 100%;
+        .previous {}
+    }
+    div {
+        height: 100%;
+        height: 100%;
+        .selectPaging {
+            vertical-align: middle;
+            opacity: {}
+        }
+    }
+    div {
+        height: 100%;
+        height: 100%;
+        .next {}
+    }
+}

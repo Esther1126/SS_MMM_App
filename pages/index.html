@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="maximum-dpr=2" name="flexible" />
+    <meta content="modeName=750-12" name="grid" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 针对IOS设备起作用 安卓 默认dpr=1 -->
+    <!-- <meta name="flexible" content="initial-dpr=2"> -->
+    <script src="../lib/lib-flexible/flexible.debug.js"></script>
+
+    <!-- css样式 -->
+    <link rel="stylesheet" href="../css/app.min.css">
+    <title>首页</title>
+</head>
+
+<body>
+    <header class="mainHeader"></header>
+    <!-- 首页搜索 -->
+    <section class="mainSearch"></section>
+
+    <!-- 首页导航 -->
+    <nav class="mainNav"></nav>
+    <script id="tempMainNav" type="text/html">
+        {{if result}}
+        <ul class="clearfix contains" id="moreNav">
+            {{each result v i}}
+            <li _id="{{v.id}}" indexMenuId={{v.indexmenuId}}>
+                <a href="{{v.titlehref}}">
+                    {{@v.img}}
+                    <p>{{v.name}}</p>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </script>
+
+    <!-- 超级折扣推荐 -->
+    <main class="mainMoneyCtrl">
+        <div class="commTitle clearfix pr">
+            <h2 class="fl">超级折扣推荐</h2>
+            <span class="fr"><a href="#"><img src="../images/more.png"></a></span>
+        </div>
+
+        <div class="MoneyCtrlContent"></div>
+        <script id="tempMoneyCtrlContent" type="text/html">
+            {{if result}}
+            <ul>
+                {{each result v i}}
+                <li>
+                    <a href="#" class="clearfix" _id="{{v._id}}" _productId="{{v.productId}}">
+                        <div class="left fl">{{@v.productImgSm}}</div>
+                        <div class="right">
+                            <div class="tit">
+                                {{v.productName}}
+                                <span class="">{{v.productPinkage}}</span>
+                            </div>
+                            <div class="other clearfix">
+                                <span class="mall">{{v.productFrom}} | {{v.productTime}}</span>
+                                <span class="comment"><i class="icon-comment"></i>{{v.productComCount}}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </script>
+    </main>
+    <!-- 更多 -->
+    <section class="mainMore">
+        <a href="#">更多优惠信息>>></a>
+    </section>
+    <section class="mainBrand">
+        <div class="commTitle clearfix pr">
+            <h2 class="fl">品牌排行</h2>
+            <span class="fr"><a href="#"><img src="../images/more.png"></a></span>
+        </div>
+    </section>
+
+    <!-- 通用底部 -->
+    <footer class="mainFooter "></footer>
+
+</body>
+<script src="../lib/artTemplate/template.js"></script>
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/jquery/jquery-ui.min.js"></script>
+
+<!-- js -->
+<script src="../js/common/headerAndFooter.js"></script>
+<script src="../js/common/search.js"></script>
+<script src="../js/common/route.js"></script>
+<script src="../js/pages/index.js"></script>
+
+</html>

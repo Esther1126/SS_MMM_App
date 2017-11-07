@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="maximum-dpr=2" name="flexible" />
+    <meta content="modeName=750-12" name="grid" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 针对IOS设备起作用 安卓 默认dpr=1 -->
+    <!-- <meta name="flexible" content="initial-dpr=2"> -->
+    <script src="../lib/lib-flexible/flexible.debug.js"></script>
+
+    <!-- css样式 -->
+    <link rel="stylesheet" href="../css/app.min.css">
+    <title>比价搜索</title>
+</head>
+
+<body>
+    <!-- 通用头部 -->
+    <header class="mainHeader"></header>
+    <!-- 首页搜索 -->
+    <section class="mainSearch"></section>
+    <main class="category"></main>
+    <script id="tempCategoryTitle" type="text/html">
+        {{if result}}
+        <ul>
+            {{each result v i}}
+            <li _id="{{v._id}}">
+                <div class="category-title" titleid="{{v.titleId}}">
+                    <a href="javascript:;" titleid="{{v.titleId}}">{{v.title}}</a>
+                </div>
+                <div class="category-list"></div>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </script>
+
+    <script id="tempCategoryList" type="text/html">
+        {{if result}}
+        <ul class="clearfix">
+            {{each result v i}}
+            <li _id="{{v._id}}" titleid="{{v.titleId}}" class="category-item w33 fl">
+                <a href="productlist.html?categoryid={{v.categoryId}}&category={{v.category}}" categoryId="{{v.categoryId}}">{{v.category}}</a>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </script>
+
+    <!-- 通用底部 -->
+    <footer class="mainFooter "></footer>
+
+</body>
+<script src="../lib/artTemplate/template.js"></script>
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/jquery/jquery-ui.min.js"></script>
+
+<!-- js -->
+<script src="../js/common/headerAndFooter.js"></script>
+<script src="../js/common/search.js"></script>
+<script src="../js/common/route.js"></script>
+<script src="../js/pages/category.js"></script>
+<script>
+</script>
+
+</html>

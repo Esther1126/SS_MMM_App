@@ -1,0 +1,159 @@
+/*
+ * @Author: Esther 
+ * @Date: 2017-11-04 17:02:56 
+ */
+
+// 搜寻
+.mainSearch {
+    width: 100%;
+    height: px2em(50);
+    @include font-dpr(16);
+    padding: px2em(10);
+    background-color: #fff;
+    border-bottom: 1px solid $main-color-line;
+    form {
+        height: px2em(30);
+        width: 100%;
+        position: relative;
+        box-sizing: border-box;
+        input[type="text"] {
+            height: px2em(30);
+            width: 100%;
+            position: absolute;
+            border-radius: px2em(15);
+            padding: 0 px2em(15);
+            background-color: #f1f1f1;
+            line-height: px2em(30);
+            border: 0;
+        }
+        input[type="button"] {
+            height: px2em(30);
+            width: px2em(63);
+            position: absolute;
+            right: 0;
+            border-radius: px2em(15);
+            border: 0;
+            background-color: $main-color;
+            color: #fff;
+        }
+    }
+}
+
+.mainNav {
+    width: 100%;
+    background-color: #fff;
+    ul {
+        width: 100%;
+        padding-top: px2em(8);
+        overflow: hidden;
+        li {
+            float: left;
+            width: 25%;
+            a {
+                display: block;
+                padding: px2em(5) 0;
+                img {
+                    width: px2em(50);
+                    height: px2em(50);
+                    margin: 0 auto;
+                    display: block;
+                }
+                p {
+                    width: 100%;
+                    margin: px2em(5) 0;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.contains {
+    height: px2em(175);
+    // overflow: hidden;
+}
+
+.mainMoneyCtrl {
+    width: 100%;
+    .MoneyCtrlContent {
+        width: 100%;
+        ul {
+            padding: 0 px2em(5);
+            background-color: #fff;
+            li {
+                height: px2em(140);
+                width: 100%;
+                a {
+                    height: 100%;
+                    width: 100%;
+                    display: block;
+                    padding: px2em(14) px2em(8);
+                    .left {
+                        // margin-right: px2em(10);
+                        img {
+                            // display: block;
+                            width: px2em(100);
+                            height: px2em(100);
+                        }
+                    }
+                    .right {
+                        // width: px2em(270);
+                        min-height: px2em(100);
+                        position: relative;
+                        overflow: hidden;
+                        padding-left: px2em(10);
+                        .tit {
+                            color: #333;
+                            @include font-dpr(16);
+                            span {
+                                word-break: keep-all;
+                                color: $main-color-price;
+                            }
+                        }
+                        .other {
+                            position: absolute;
+                            bottom: px2em(10);
+                            width: 100%;
+                            padding-right: px2em(5);
+                            .mall {
+                                float: left;
+                                color: $main-font-color-grew;
+                            }
+                            .comment {
+                                float: right;
+                                margin-right: px2em(5);
+                                color: $main-font-color-grew;
+                                position: relative;
+                                .icon-comment {
+                                    width: px2em(14);
+                                    height: px2em(14);
+                                    display: inline-block;
+                                    background: url('../images/comment.svg');
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: -20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mainMore {
+    background-color: #f4f4f4;
+    height: px2em(55);
+    width: 100%;
+    padding: px2em(11);
+    a {
+        width: 100%;
+        border-radius: px2em(5);
+        border: 1px solid #999;
+        height: 100%;
+        text-align: center;
+        line-height: px2em(30);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    }
+}

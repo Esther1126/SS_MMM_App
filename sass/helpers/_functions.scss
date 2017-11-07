@@ -1,0 +1,60 @@
+/*
+ * @Author: Esther 
+ * @Date: 2017-11-04 17:47:44 
+ */
+
+$base-font-size: 16px !default;
+@function px2em($px) {
+    $base: 1 / 37.5 * 1rem;
+    @if (unitless($px)) {
+        @warn "Assuming #{$px} to be in pixels, attempting to convert it into pixels for you";
+        @return px2em($px + 0px);
+    }
+    @else if (unit($px)==rem) {
+        @return $px;
+    }
+    @return $px / 1px * $base;
+}
+
+@mixin font-dpr($font-size) {
+    font-size: $font-size * 1px;
+    [data-dpr="2"] & {
+        font-size: $font-size * 2px;
+    }
+    // for mx3
+    [data-dpr='2.5'] & {
+        font-size: round($number: $font-size * 2.5 / 2) * 1px;
+    }
+    // for 小米note
+    [data-dpr="2.75"] & {
+        font-size: round($number: $font-size * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        font-size: round($number: $font-size * 3 / 2) * 3px;
+    }
+    [data-dpr="4"] & {
+        font-size: $font-size * 2px;
+    }
+}
+
+// @function font-size($px) {
+//     font-size: round($px / 2) * 1px;
+//     [data-dpr='2'] & {
+//         font-size: $px * 1px;
+//     }
+//     // for mx3
+//     [data-dpr='2.5'] & {
+//         font-size: round($px * 2.5 / 2) * 1px;
+//     }
+//     // for 小米note
+//     [data-dpr="2.75"] & {
+//         font-size: round($px * 2.75 / 2) * 1px;
+//     }
+//     [data-dpr="3"] & {
+//         font-size: round($px / 2 * 3) * 1px
+//     }
+//     // for 三星note4
+//     [data-dpr="4"] & {
+//         font-size: $px * 2px;
+//     }
+// }

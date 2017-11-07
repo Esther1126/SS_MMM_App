@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="maximum-dpr=2" name="flexible" />
+    <meta content="modeName=750-12" name="grid" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 针对IOS设备起作用 安卓 默认dpr=1 -->
+    <!-- <meta name="flexible" content="initial-dpr=2"> -->
+    <script src="../lib/lib-flexible/flexible.debug.js"></script>
+
+    <!-- css样式 -->
+    <link rel="stylesheet" href="../css/app.min.css">
+    <link rel="stylesheet" href="../css/productlist.min.css">
+    <title>比价搜索</title>
+</head>
+
+<body>
+    <!-- 通用头部 -->
+    <header class="mainHeader"></header>
+    <!-- 首页搜索 -->
+    <section class="mainSearch"></section>
+    <main class="productList">
+
+        <!-- 三级导航菜单 -->
+        <div class="productListNav clearfix"></div>
+        <script id="tempProudctListNav" type="text/html">
+            <ul class="clearfix">
+                <li><a href="./index.html">首页 ></a></li>
+                <li><a href="./category.html">全部分类 ></a></li>
+                <li><a href="#">{{category}} > </a></li>
+            </ul>
+            <div class="btn-filter">
+                <a href="javascript:;">筛选</a>
+            </div>
+        </script>
+
+        <!-- 商品列表 -->
+        <section class="productListContent"></section>
+        <script id="tempProductListContent" type="text/html">
+            {{if result}}
+            <ul class="clearfix">
+                {{each result v i }}
+                <li _id="{{v._id}}" productId="{{v.productId}}" productListId="{{v.productListId}}" class="clearfix">
+                    <a href="product.html?productid={{v.productId}}&categoryid={{v.categoryId}}">
+                        <div class="left fl">
+                            {{@v.productImg}}
+                        </div>
+                        <div class="right">
+                            <div class="tit">{{v.productName}}</div>
+                            <div class="price">{{v.productPrice}}</div>
+                            <div class="other">
+                                <span class="mall">{{v.brandName}} | {{v.productQuote}}</span>
+                                <span class="comment">{{v.productCom}}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            {{/if}}
+        </script>
+
+    </main>
+
+    <!-- 分页 -->
+    <section class="mainPaging">
+        <div class="w33 fl"><a href="javascript:;" class="previous">上一页</a></div>
+        <div class="w33 fl">
+            <select class="selectPaging" name="selectPaging">
+                <option>1/3</option>
+                <option>2/3</option>
+                <option>3/3</option>
+            </select>
+        </div>
+        <div class="w33 fl"><a href="javascript:;" class="next">下一页</a></div>
+    </section>
+
+    <!-- 通用底部 -->
+    <footer class="mainFooter "></footer>
+
+</body>
+<script src="../lib/artTemplate/template.js"></script>
+<script src="../lib/jquery/jquery.min.js"></script>
+<script src="../lib/jquery/jquery-ui.min.js"></script>
+
+<!-- js -->
+<script src="../js/common/headerAndFooter.js"></script>
+<script src="../js/common/search.js"></script>
+<script src="../js/common/route.js"></script>
+<script src="../js/common/tools.js"></script>
+<!-- <script src="../js/pages/index.js"></script> -->
+<script>
+    ;
+    (function() {
+        var url = {
+            /***
+             * 商品列表api
+             */
+            getProductList: routeURL.getProductList
+        };
+
+        /***
+         * 
+         * 页面函数执行
+         * 
+         * */
+        ;
+        (function() {
+            /***
+             * 
+             * 将url 转换为  字典
+             * 
+             * */
+            var urlParam = decodeURI(location.search);
+            urlParamObj = urlParam ? tools.getUrlParam(urlParam) : {
+                categoryid: 0
+            };
+
+            /***
+             * 
+             * 渲染 三级导航栏
+             * */
+            $('.productListNav').html(template('tempProudctListNav', urlParamObj));
+
+            urlParamObj['pageid'] = urlParamObj['pageid'] ? urlParamObj['pageid'] : 1;
+
+            /***
+             * 
+             * 渲染 商品列表
+             * 
+             */
+            renderProductList(url.getProductList, urlParamObj);
+
+
+        })();
+
+
+
+        /****
+         * 
+         * 渲染 商品列表
+         * 
+         ***/
+        function renderProductList(url, info) {
+            routeURL.getData(
+                url,
+                info,
+                function(data) {
+                    console.log(data);
+                    $('.productListContent').html(template('tempProductListContent', data));
+                });
+
+
+        }
+
+        /***
+         * 
+         * 分页
+         * 
+         */
+
+        function paging() {
+
+        }
+    })()
+</script>
+
+</html>

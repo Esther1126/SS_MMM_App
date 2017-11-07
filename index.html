@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta content="maximum-dpr=2" name="flexible" />
+    <meta content="modeName=750-12" name="grid" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- 针对IOS设备起作用 安卓 默认dpr=1 -->
+    <!-- <meta name="flexible" content="initial-dpr=2"> -->
+    <script src="./lib/lib-flexible/flexible.debug.js"></script>
+    <!-- css样式 -->
+    <link rel="stylesheet" href="./css/app.min.css">
+    <title>首页</title>
+</head>
+
+<body></body>
+<script src="./lib/artTemplate/template.js"></script>
+<script src="./lib/jquery/jquery.min.js"></script>
+
+<!-- js -->
+<script src="./js/common/route.js"></script>
+<script>
+    window.onload = function() {
+        location.href = './pages/index.html';
+    };
+</script>
+
+</html>
